@@ -1,0 +1,9 @@
+Initializing addon
+Attempting to load librnnoise-0.dll
+librnnoise-0.dll loaded successfully
+Getting function pointers
+All function pointers obtained successfully
+Creating RNNoiseWrapper instance
+RNNoise state created successfully
+Destroying RNNoiseWrapper instance
+RNNoise state destroyed

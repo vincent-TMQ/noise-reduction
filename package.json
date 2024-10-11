@@ -1,0 +1,82 @@
+{
+  "name": "rnnoise-addon-test",
+  "productName": "Rnnoise-Denoiser",
+  "version": "1.0.0",
+  "description": "RNNoise addon test",
+  "main": "main.js",
+  "author": "vincent",
+  "build": {
+    "appId": "com.vincent.rnnoisedenoiser",
+    "files": [
+      "**/*",
+      "!installers${/*}",
+      "!**/node_modules/*/{CHANGELOG.md,README.md,README,readme.md,readme}",
+      "!**/node_modules/*/{test,__tests__,tests,powered-test,example,examples}",
+      "!**/node_modules/*.d.ts",
+      "!**/node_modules/.bin",
+      "!**/*.{iml,o,hprof,orig,pyc,pyo,rbc,swp,csproj,sln,xproj}"
+    ],
+    "extraResources": [
+      {
+        "from": "build/Release/",
+        "to": ".",
+        "filter": [
+          "rnnoise.node"
+        ]
+      },
+      {
+        "from": "lib/",
+        "to": "../lib/",
+        "filter": [
+          "**/*"
+        ]
+      },
+      {
+        "from": "installers/",
+        "to": "vbcable/",
+        "filter": [
+          "**/*"
+        ]
+      },
+      {
+        "from": ".",
+        "to": ".",
+        "filter": [
+          "restore_audio_settings.ps1", "check_vbcable.ps1"
+        ]
+      }
+    ],
+    "asarUnpack": [
+      "build/Release/rnnoise.node",
+      "lib"
+    ],
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "icon": "assets/icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "runAfterFinish": false,
+      "include": "installer.nsh",
+      "perMachine": true
+    }
+  },
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder build --win --publish never",
+    "postinstall": "electron-builder install-app-deps && electron-rebuild"
+  },
+  "dependencies": {
+    "naudiodon": "^2.3.6"
+  },
+  "devDependencies": {
+    "electron": "^20.0.2",
+    "electron-builder": "^25.1.7",
+    "electron-rebuild": "^3.2.9",
+    "node-gyp": "^9.0.0"
+  }
+}
